@@ -97,8 +97,6 @@ SELECT * FROM Mech;
 
 
 
-
-
 CREATE DATABASE CompanyDB;
 USE CompanyDB;
 
@@ -123,4 +121,35 @@ INSERT INTO Worker
     (8, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
 
 SELECT * FROM Worker;
-UPDATE worker SET salary = salary + 5000
+UPDATE worker SET salary = salary + 5000;
+
+START TRANSACTION;
+
+UPDATE Worker SET SALARY = SALARY + 5000;
+SELECT * FROM Worker;
+
+SAVEPOINT time15;
+
+DELETE FROM Worker WHERE DEPARTMENT = 'HR';
+
+SAVEPOINT time16;
+
+SELECT * FROM Worker;
+
+INSERT INTO Worker (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) 
+VALUES (9, 'Tina', 'Rai', 60000, '2014-05-12 09:00:00', 'Admin');
+
+SAVEPOINT time17;
+
+ROLLBACK TO time17;
+
+INSERT INTO Worker (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) 
+VALUES (10, 'Yash', 'Goel', 65000, '2014-07-15 09:00:00', 'Account');
+
+SAVEPOINT time18;
+
+ROLLBACK TO time17;
+
+SELECT * FROM Worker;
+
+COMMIT;
