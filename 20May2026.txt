@@ -70,3 +70,27 @@ ALTER TABLE Course_Details DROP INDEX course_name;
 ALTER TABLE Faculty_Records ALTER COLUMN status DROP DEFAULT;
 ALTER TABLE Faculty_Records DROP CHECK Faculty_Records_chk_1;
 ALTER TABLE Faculty_Records DROP INDEX personal_email;
+
+CREATE TABLE Enrollments (
+    enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    course_id VARCHAR(10),
+    enrollment_date DATE DEFAULT (CURRENT_DATE),
+    CONSTRAINT fk_student FOREIGN KEY (student_id) REFERENCES Student_Records(student_id),
+    CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES Course_Details(course_id)
+);
+
+INSERT INTO Enrollments (student_id, course_id) VALUES 
+(1, 'CS201'),
+(2, 'EE101'),
+(3, 'CS201'),
+(4, 'MA102'),
+(5, 'ME302');
+
+SELECT * FROM Enrollments;
+
+INSERT INTO Enrollments (student_id, course_id) VALUES (999, 'CS201');
+
+INSERT INTO Enrollments (student_id, course_id) VALUES ('abc', 'CS201');
+
+INSERT INTO Enrollments (student_id, course_id) VALUES (NULL, 'CS201');
