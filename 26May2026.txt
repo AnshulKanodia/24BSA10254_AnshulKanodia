@@ -42,3 +42,27 @@ db.products.insertMany([
     name: 1,
     "spec.ram": 1
 })
+db.products.find({
+    price: {
+        $lt: 799
+    }
+}, {
+    name: 1,
+    price: 1
+})
+[19:28, 26/05/2026] +91 97509 36750: db.products.find({
+    "spec.screen": {
+        $lt: 7
+    }
+}, {
+    name: 1,
+    "spec.screen": 1
+})
+[19:29, 26/05/2026] +91 97509 36750: db.products.find({
+    storage: {
+        $lt: 128
+    }
+}, {
+    name: 1,
+    storage: 1
+})
