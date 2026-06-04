@@ -1,0 +1,1052 @@
+----unset----
+
+use ProductDB
+switched to db ProductDB
+db.products.insertMany([
+{
+    "_id" : 1,
+    "name" : "xPhone",
+    "price" : 799,
+    "releaseDate" : new Date("2011-05-14"),
+    "spec" : {
+        "ram" : 4,
+        "screen" : 6.5,
+        "cpu" : 2.66
+    },
+    "color" : ["white","black"],
+    "storage" : [64,128,256]
+},
+{
+    "_id" : 2,
+    "name" : "xTablet",
+    "price" : 899,
+    "releaseDate" : new Date("2011-09-01"),
+    "spec" : {
+        "ram" : 16,
+        "screen" : 9.5,
+        "cpu" : 3.66
+    },
+    "color" : ["white","black","purple"],
+    "storage" : [128,256,512]
+},
+{
+    "_id" : 3,
+    "name" : "SmartTablet",
+    "price" : 899,
+    "releaseDate" : new Date("2015-01-14"),
+    "spec" : {
+        "ram" : 12,
+        "screen" : 9.7,
+        "cpu" : 3.66
+    },
+    "color" : ["blue"],
+    "storage" : [16,64,128]
+},
+{
+    "_id" : 4,
+    "name" : "SmartPad",
+    "price" : 699,
+    "releaseDate" : new Date("2020-05-14"),
+    "spec" : {
+        "ram" : 8,
+        "screen" : 9.7,
+        "cpu" : 1.66
+    },
+    "color" : ["white","orange","gold","gray"],
+    "storage" : [128,256,1024]
+},
+{
+    "_id" : 5,
+    "name" : "SmartPhone",
+    "price" : 599,
+    "releaseDate" : new Date("2022-09-14"),
+    "spec" : {
+        "ram" : 4,
+        "screen" : 5.7,
+        "cpu" : 1.66
+    },
+    "color" : ["white","orange","gold","gray"],
+    "storage" : [128,256]
+}
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5
+  }
+}
+db.products.find().pretty()
+{
+  _id: 1,
+  name: 'xPhone',
+  price: 799,
+  releaseDate: 2011-05-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 6.5,
+    cpu: 2.66
+  },
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    64,
+    128,
+    256
+  ]
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  releaseDate: 2011-09-01T00:00:00.000Z,
+  spec: {
+    ram: 16,
+    screen: 9.5,
+    cpu: 3.66
+  },
+  color: [
+    'white',
+    'black',
+    'purple'
+  ],
+  storage: [
+    128,
+    256,
+    512
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  releaseDate: 2015-01-14T00:00:00.000Z,
+  spec: {
+    ram: 12,
+    screen: 9.7,
+    cpu: 3.66
+  },
+  color: [
+    'blue'
+  ],
+  storage: [
+    16,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  releaseDate: 2020-05-14T00:00:00.000Z,
+  spec: {
+    ram: 8,
+    screen: 9.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  releaseDate: 2022-09-14T00:00:00.000Z,
+  spec: {
+    ram: 4,
+    screen: 5.7,
+    cpu: 1.66
+  },
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    128,
+    256
+  ]
+}
+db.products.updateOne(
+    { _id: 1 },
+    {
+        $unset: {
+            price: ""
+        }
+    }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.products.updateMany(
+    {},
+    {
+        $unset: {
+            "spec.ram": ""
+        }
+    }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+db.products.updateMany(
+    {},
+    {
+        $unset: {
+            "storage.0": ""
+        }
+    }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+db.products.updateMany(
+    {},
+    {
+        $unset: {
+            releaseDate: "",
+            spec: ""
+        }
+    }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+db.products.updateMany(
+    {},
+    {
+        $unset: {
+            releaseDate: "",
+            spec: ""
+        }
+    }
+)
+
+
+
+
+------RENAME ------
+
+use ProductDB
+
+db.products.insertMany([
+{
+    "_id" : 1,
+    "nmea" : "xPhone",
+    "price" : 799,
+    "releaseDate" : new Date("2011-05-14"),
+    "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },
+    "color" : ["white","black"],
+    "storage" : [64,128,256]
+},
+{
+    "_id" : 2,
+    "nmea" : "xTablet",
+    "price" : 899,
+    "releaseDate" : new Date("2011-09-01"),
+    "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },
+    "color" : ["white","black","purple"],
+    "storage" : [128,256,512]
+},
+{
+    "_id" : 3,
+    "nmea" : "SmartTablet",
+    "price" : 899,
+    "releaseDate" : new Date("2015-01-14"),
+    "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },
+    "color" : ["blue"],
+    "storage" : [16,64,128]
+},
+{
+    "_id" : 4,
+    "nmea" : "SmartPad",
+    "price" : 699,
+    "releaseDate" : new Date("2020-05-14"),
+    "spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },
+    "color" : ["white","orange","gold","gray"],
+    "storage" : [128,256,1024]
+},
+{
+    "_id" : 5,
+    "nmea" : "SmartPhone",
+    "price" : 599,
+    "releaseDate" : new Date("2022-09-14"),
+    "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },
+    "color" : ["white","orange","gold","gray"],
+    "storage" : [128,256]
+}
+])
+already on db ProductDB
+db.products.updateMany(
+ {},
+ {
+   $rename: {
+     nmea: "name"
+   }
+ }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.products.find({}, { name: 1 })
+{
+  _id: 1,
+  name: 'xPhone'
+}
+{
+  _id: 2,
+  name: 'xTablet'
+}
+{
+  _id: 3,
+  name: 'SmartTablet'
+}
+{
+  _id: 4,
+  name: 'SmartPad'
+}
+{
+  _id: 5,
+  name: 'SmartPhone'
+}
+db.products.updateMany(
+ {},
+ {
+   $rename: {
+     "spec.screen": "spec.screenSize"
+   }
+ }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.products.find({}, { spec: 1 })
+{
+  _id: 1
+}
+{
+  _id: 2
+}
+{
+  _id: 3
+}
+{
+  _id: 4
+}
+{
+  _id: 5
+}
+db.products.updateOne(
+ { _id: 1 },
+ {
+   $rename: {
+     "spec.cpu": "cpu"
+   }
+ }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.products.find({ _id: 1 })
+{
+  _id: 1,
+  name: 'xPhone',
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    null,
+    128,
+    256
+  ]
+}
+db.products.updateOne(
+ { _id: 2 },
+ {
+   $rename: {
+     color: "storage"
+   }
+ }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.products.find({ _id: 2 })
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  storage: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+db.collection.updateOne(
+ {},
+ {
+   $rename: {
+     oldField: "newField"
+   }
+ }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.collection.updateOne(
+ {},
+ {
+   $rename: {
+     "spec.screen": "spec.screenSize"
+   }
+ }
+)
+
+
+
+----upsert----
+
+use ProductDB
+
+db.products.insertMany([
+{
+    "_id" : 1,
+    "nmea" : "xPhone",
+    "price" : 799
+},
+{
+    "_id" : 2,
+    "nmea" : "xTablet",
+    "price" : 899
+},
+{
+    "_id" : 3,
+    "nmea" : "SmartTablet",
+    "price" : 899
+},
+{
+    "_id" : 4,
+    "nmea" : "SmartPad",
+    "price" : 699
+},
+{
+    "_id" : 5,
+    "nmea" : "SmartPhone",
+    "price" : 599
+}
+])
+already on db ProductDB
+db.products.updateMany(
+    { _id: 6 },
+    { $set: { price: 999 } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.products.find({ _id: 6 })
+db.products.updateMany(
+    { _id: 6 },
+    { $set: { price: 999 } },
+    { upsert: true }
+)
+{
+  acknowledged: true,
+  insertedId: 6,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+db.products.find({ _id: 6 })
+{
+  _id: 6,
+  price: 999
+}
+db.products.updateOne(
+    { _id: 7 },
+    { $set: { price: 1200 } },
+    { upsert: true }
+)
+{
+  acknowledged: true,
+  insertedId: 7,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+db.products.find({ _id: 7 })
+{
+  _id: 7,
+  price: 1200
+}
+db.products.find().pretty()
+{
+  _id: 1,
+  name: 'xPhone',
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    null,
+    128,
+    256
+  ]
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  storage: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  color: [
+    'blue'
+  ],
+  storage: [
+    null,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256
+  ]
+}
+{
+  _id: 6,
+  price: 999
+}
+{
+  _id: 7,
+  price: 1200
+}
+db.collection.updateOne(
+    filter,
+    update,
+    { upsert: true }
+)
+
+
+--- deleteOne-----
+
+use ProductDB
+
+db.products.insertMany([
+{
+    "_id" : 1,
+    "name" : "xPhone",
+    "price" : 799
+},
+{
+    "_id" : 2,
+    "name" : "xTablet",
+    "price" : 899
+},
+{
+    "_id" : 3,
+    "name" : "SmartTablet",
+    "price" : 899
+},
+{
+    "_id" : 4,
+    "name" : "SmartPad",
+    "price" : 699
+},
+{
+    "_id" : 5,
+    "name" : "SmartPhone",
+    "price" : 599
+}
+])
+already on db ProductDB
+db.products.insertMany([
+{
+    "_id" : 1,
+    "name" : "xPhone",
+    "price" : 799
+},
+{
+    "_id" : 2,
+    "name" : "xTablet",
+    "price" : 899
+},
+{
+    "_id" : 3,
+    "name" : "SmartTablet",
+    "price" : 899
+},
+{
+    "_id" : 4,
+    "name" : "SmartPad",
+    "price" : 699
+},
+{
+    "_id" : 5,
+    "name" : "SmartPhone",
+    "price" : 599
+}
+])
+Display All Documents
+db.products.find().pretty()
+1. Delete One Document by Condition
+
+Delete document with _id = 1
+
+db.products.deleteOne(
+    { _id: 1 }
+)
+
+Verify:
+
+db.products.find().pretty()
+2. Delete First Document in Collection
+db.products.deleteOne({})
+
+Verify:
+
+db.products.find().pretty()
+3. Delete One Document by Name
+db.products.deleteOne(
+    { name: "SmartPad" }
+)
+
+Verify:
+
+db.products.find().pretty()
+Return Value
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+Meaning:
+
+acknowledged: true → MongoDB accepted the request.
+deletedCount: 1 → One document was deleted.
+Most Important Syntax
+
+Delete specific document:
+
+db.collection.deleteOne(
+    { field: value }
+)
+
+Delete first document:
+
+db.collection.deleteOne({})
+Difference Between deleteOne() and deleteMany()
+
+Delete only one matching document:
+
+db.products.deleteOne(
+    { price: 899 }
+)
+
+Delete all matching documents:
+
+db.products.deleteMany(
+    { price: 899 }
+)
+
+This is the complete set of commands needed for practicing deleteOne().
+SyntaxError: Missing semicolon. (28:7)
+
+  26 | }
+  27 | ])
+> 28 | Display All Documents
+     |        ^
+  29 | db.products.find().pretty()
+  30 | 1. Delete One Document by Condition
+  31 |
+db.products.find().pretty()
+{
+  _id: 1,
+  name: 'xPhone',
+  color: [
+    'white',
+    'black'
+  ],
+  storage: [
+    null,
+    128,
+    256
+  ]
+}
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  storage: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  color: [
+    'blue'
+  ],
+  storage: [
+    null,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256
+  ]
+}
+{
+  _id: 6,
+  price: 999
+}
+{
+  _id: 7,
+  price: 1200
+}
+db.products.deleteOne(
+    { _id: 1 }
+)
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.products.find().pretty()
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  storage: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  color: [
+    'blue'
+  ],
+  storage: [
+    null,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256
+  ]
+}
+{
+  _id: 6,
+  price: 999
+}
+{
+  _id: 7,
+  price: 1200
+}
+db.products.find().pretty()
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  storage: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  color: [
+    'blue'
+  ],
+  storage: [
+    null,
+    64,
+    128
+  ]
+}
+{
+  _id: 4,
+  name: 'SmartPad',
+  price: 699,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256,
+    1024
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256
+  ]
+}
+{
+  _id: 6,
+  price: 999
+}
+{
+  _id: 7,
+  price: 1200
+}
+db.products.deleteOne(
+    { name: "SmartPad" }
+)
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.products.find().pretty()
+{
+  _id: 2,
+  name: 'xTablet',
+  price: 899,
+  storage: [
+    'white',
+    'black',
+    'purple'
+  ]
+}
+{
+  _id: 3,
+  name: 'SmartTablet',
+  price: 899,
+  color: [
+    'blue'
+  ],
+  storage: [
+    null,
+    64,
+    128
+  ]
+}
+{
+  _id: 5,
+  name: 'SmartPhone',
+  price: 599,
+  color: [
+    'white',
+    'orange',
+    'gold',
+    'gray'
+  ],
+  storage: [
+    null,
+    256
+  ]
+}
+{
+  _id: 6,
+  price: 999
+}
+{
+  _id: 7,
+  price: 1200
+}
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+SyntaxError: Missing semicolon. (3:14)
+
+  1 | {
+  2 |   acknowledged: true,
+> 3 |   deletedCount: 1
+    |               ^
+  4 | }
+db.collection.deleteOne(
+    { field: value }
+)
+ReferenceError: value is not defined
+db.collection.deleteOne({})
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+db.products.deleteOne(
+    { price: 899 }
+)
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.products.deleteMany(
+    { price: 899 }
+)
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+ProductDB
+
+
+
